@@ -47,12 +47,11 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Class to draw a custom watch-face, with time, day, high-low temperature, and
- * corresponding weather icon.
- */
+ * Class to draw a custom watch-face
+ * */
 public class MyWatchFace extends CanvasWatchFaceService {
 
-    //Typeface we would use.
+    public final static String LOG_TAG = MyWatchFace.class.getSimpleName();
     private static final Typeface NORMAL_TYPEFACE =
             Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
     private static final Typeface BOLD_TYPEFACE =
@@ -123,7 +122,6 @@ public class MyWatchFace extends CanvasWatchFaceService {
                     .setCardPeekMode(WatchFaceStyle.PEEK_MODE_VARIABLE)
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
-//                    .setAcceptsTapEvents(true)
                     .build());
 
             //getting the resources.
@@ -257,7 +255,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
         @Override
         public void onTapCommand(int tapType, int x, int y, long eventTime) {
-            //No current requirements to do anything.
+
             invalidate();
         }
 
@@ -327,12 +325,12 @@ public class MyWatchFace extends CanvasWatchFaceService {
             Wearable.DataApi.addListener(mApiClient, this).setResultCallback(new ResultCallbacks<Status>() {
                 @Override
                 public void onSuccess(@NonNull Status status) {
-                    Log.i("myTag", String.valueOf(status));
+                    Log.i(LOG_TAG, String.valueOf(status));
                 }
 
                 @Override
                 public void onFailure(@NonNull Status status) {
-                    Log.i("myTag", String.valueOf(status));
+                    Log.i(LOG_TAG, String.valueOf(status));
                 }
             });
         }
