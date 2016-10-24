@@ -433,10 +433,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
             String lastNotificationKey = context.getString(R.string.pref_last_notification);
             long lastSync = prefs.getLong(lastNotificationKey, 0);
 
-
-
-            //TODO change by day_in_millis
-            if (System.currentTimeMillis() - lastSync >= 100) {
+            if (System.currentTimeMillis() - lastSync >= 12*3600000) {
                 // Last sync was more than 1 day ago, let's send a notification with the weather.
                 String locationQuery = Utility.getPreferredLocation(context);
 
@@ -585,7 +582,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter implements 
         dataMap.putAsset("icon", iconAsset);
         mapRequest.setUrgent();
         Wearable.DataApi.putDataItem(apiClient, mapRequest.asPutDataRequest());
-
     }
 
     /**
